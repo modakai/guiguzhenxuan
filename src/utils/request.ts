@@ -14,7 +14,7 @@ request.interceptors.response.use(
   (response) => response,
   (error) => {
     //处理网络错误
-    let msg = ''
+    let msg: string
     const status = error.response.status
     switch (status) {
       case 401:
