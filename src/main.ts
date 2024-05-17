@@ -5,6 +5,9 @@ import 'virtual:svg-icons-register'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+// 引入路由
+import router from '@/router'
+
 //引入首页样式
 import './styles/index.scss'
 
@@ -19,7 +22,10 @@ const app = createApp(App)
 //   app.component(key, component)
 // }
 
+// 使用 element-plus
 app.use(ElementPlus, {
   locale: zhCn
 })
+// 使用路由
+app.use(router)
 app.mount('#app')
