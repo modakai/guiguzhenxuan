@@ -1,9 +1,16 @@
 <script setup lang="ts" name="Login"></script>
 
 <template>
-  <div id="login">
-    <h1>Login 组件</h1>
+  <div class="login_container">
+    <el-row> a </el-row>
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.login_container {
+  width: 100%;
+  height: 100vh;
+  background: url('@/assets/images/background.jpg') no-repeat;
+  background-size: cover;
+}
+</style>
