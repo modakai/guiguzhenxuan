@@ -13,8 +13,10 @@ import './styles/index.scss'
 
 // 设置语言为中文
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-
+// 导入app组件
 import App from './App.vue'
+// 引入全局注册组件
+import globalComponent from '@/components/index'
 
 const app = createApp(App)
 // // 导入icons图标
@@ -26,6 +28,8 @@ const app = createApp(App)
 app.use(ElementPlus, {
   locale: zhCn
 })
+// 使用全局组件
+app.use(globalComponent)
 // 使用路由
 app.use(router)
 app.mount('#app')
