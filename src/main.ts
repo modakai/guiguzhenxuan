@@ -4,15 +4,14 @@ import 'virtual:svg-icons-register'
 // 引入  element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-
+// 设置语言为中文
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // 引入路由
 import router from '@/router'
 
 //引入首页样式
 import './styles/index.scss'
 
-// 设置语言为中文
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // 导入app组件
 import App from './App.vue'
 // 引入全局注册组件
