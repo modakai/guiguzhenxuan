@@ -11,7 +11,7 @@ const request = axios.create({
 request.interceptors.request.use((config) => config)
 // 响应拦截器
 request.interceptors.response.use(
-  (response) => response,
+  (response) => response.data,
   (error) => {
     //处理网络错误
     let msg: string

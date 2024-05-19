@@ -2,11 +2,36 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive } from 'vue'
 import { type loginFormData } from '@/api/user/type'
+import useUserStore from '@/store/modules/user'
+import { useRouter } from 'vue-router'
+import { ElNotification } from 'element-plus'
+// 路由器
+const $router = useRouter()
+
+let useStore = useUserStore()
 // 登入数据
 const loginForm = reactive<loginFormData>({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: '111111'
 })
+
+// 登入方法
+const login = async () => {
+  // 进行登入，并且保存数据到pinia中
+  try {
+    await useStore.userLogin(loginForm)
+    await $router.push('/')
+    ElNotification({
+      type: 'success',
+      message: '登入成功'
+    })
+  } catch (e) {
+    ElNotification({
+      type: 'error',
+      message: (e as Error).message
+    })
+  }
+}
 </script>
 
 <template>
@@ -34,7 +59,9 @@ const loginForm = reactive<loginFormData>({
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="login_btn" type="primary" size="default">登入</el-button>
+            <el-button class="login_btn" type="primary" size="default" @click="login"
+              >登入
+            </el-button>
           </el-form-item>
         </el-form>
       </el-col>
