@@ -1,23 +1,31 @@
 <script setup lang="ts" name="Login">
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { type loginFormData } from '@/api/user/type'
 import useUserStore from '@/store/modules/user'
 import { useRouter } from 'vue-router'
-import { ElNotification } from 'element-plus'
+import { ElNotification, type FormRules, type FormInstance } from 'element-plus'
 import { getTime } from '@/utils/time'
 // 路由器
 const $router = useRouter()
-
+// 用户pinia仓库
 let useStore = useUserStore()
 // 登入数据
-const loginForm = reactive<loginFormData>({
-  username: 'admin',
-  password: '111111'
+let loginForm = reactive<loginFormData>({
+  username: '',
+  password: ''
 })
-
+// 登入表单 ref
+const loginFormRef = ref<FormInstance>()
+// 表单校验
+const rules = reactive<FormRules>({
+  username: [{ required: true, min: 6, max: 10, message: '用户名至少6位', trigger: 'change' }],
+  password: [{ required: true, min: 6, max: 15, message: '密码至少6位', trigger: 'change' }]
+})
 // 登入方法
 const login = async () => {
+  // 返回的是一个 Promise对象
+  await loginFormRef.value?.validate()
   // 进行登入，并且保存数据到pinia中
   try {
     await useStore.userLogin(loginForm)
@@ -41,17 +49,19 @@ const login = async () => {
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form class="login_form">
+        <el-form
+          size="large"
+          class="login_form"
+          ref="loginFormRef"
+          :model="loginForm"
+          :rules="rules"
+        >
           <h1>Hello</h1>
           <h2>欢迎来到硅谷甄选</h2>
-          <el-form-item>
-            <el-input
-              :prefix-icon="User"
-              placeholder="请输入用户名"
-              v-model="loginForm.username"
-            ></el-input>
+          <el-form-item prop="username">
+            <el-input :prefix-icon="User" v-model="loginForm.username" placeholder="请输入用户名" />
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
               :prefix-icon="Lock"
               type="password"
