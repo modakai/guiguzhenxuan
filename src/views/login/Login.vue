@@ -19,7 +19,7 @@ let loginForm = reactive<loginFormData>({
 const loginFormRef = ref<FormInstance>()
 // 表单校验
 const rules = reactive<FormRules>({
-  username: [{ required: true, min: 6, max: 10, message: '用户名至少6位', trigger: 'change' }],
+  username: [{ required: true, min: 5, max: 10, message: '用户名至少6位', trigger: 'change' }],
   password: [{ required: true, min: 6, max: 15, message: '密码至少6位', trigger: 'change' }]
 })
 // 登入方法

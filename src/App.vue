@@ -6,8 +6,4 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-#app h1 {
-  color: $color-red;
-}
-</style>
+<style scoped lang="scss"></style>

@@ -8,7 +8,7 @@ export const constantRoute = [
   {
     // 家路由
     path: '/',
-    component: () => import('@/views/home/Home.vue'),
+    component: () => import('@/layout/Layout.vue'),
     name: 'layout'
   },
   {
