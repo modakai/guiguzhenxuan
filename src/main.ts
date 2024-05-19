@@ -8,7 +8,8 @@ import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // 引入路由
 import router from '@/router'
-
+// 引入pinia仓库
+import pinia from '@/store'
 //引入首页样式
 import './styles/index.scss'
 
@@ -31,4 +32,6 @@ app.use(ElementPlus, {
 app.use(globalComponent)
 // 使用路由
 app.use(router)
+// 使用pinia
+app.use(pinia)
 app.mount('#app')
