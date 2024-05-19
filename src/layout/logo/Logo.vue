@@ -1,9 +1,11 @@
-<script setup lang="ts" name="Logo"></script>
+<script setup lang="ts" name="Logo">
+import setting from '@/setting'
+</script>
 
 <template>
-  <div class="logo_container">
-    <img src="../../../public/logo.png" alt="硅谷甄选LOGO" />
-    <p>硅谷甄选运营平台</p>
+  <div class="logo_container" v-if="setting.logoShow">
+    <img :src="setting.logoUrl" :alt="setting.title" />
+    <p>{{ setting.title }}</p>
   </div>
 </template>
 
