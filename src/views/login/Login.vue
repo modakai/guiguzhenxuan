@@ -5,6 +5,7 @@ import { type loginFormData } from '@/api/user/type'
 import useUserStore from '@/store/modules/user'
 import { useRouter } from 'vue-router'
 import { ElNotification } from 'element-plus'
+import { getTime } from '@/utils/time'
 // 路由器
 const $router = useRouter()
 
@@ -23,7 +24,8 @@ const login = async () => {
     await $router.push('/')
     ElNotification({
       type: 'success',
-      message: '登入成功'
+      message: '登入成功',
+      title: `HI,${getTime()}好`
     })
   } catch (e) {
     ElNotification({
