@@ -18,9 +18,7 @@ withDefaults(defineProps<SvgIconsInter>(), {
 </script>
 
 <template>
-  <div>
-    <svg :style="{ width: width, height: height }">
-      <use :xlink:href="prefix + name" :fill="color"></use>
-    </svg>
-  </div>
+  <svg :style="{ width: width, height: height }">
+    <use :xlink:href="prefix + name" :fill="color"></use>
+  </svg>
 </template>

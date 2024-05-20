@@ -10,3 +10,8 @@ $base-tabular-height:50px;
 $base-menu-logo-height:50px;
 //左侧菜单logo右侧文字大小
 $base-logo-title-font-size:20px;
+
+// 图标默认填充颜色
+$base-svg-icon-color: #fff;
+// 图标默认激活颜色
+$base-svg-icon-active-color: --el-menu-active-color;

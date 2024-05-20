@@ -11,15 +11,15 @@ export const constantRoute = [
     path: '/',
     component: () => import('@/layout/Layout.vue'),
     name: 'layout',
-    meta: { title: '布局页' },
+    meta: { title: '布局页', hidden: true },
     redirect: '/home',
     children: [
       {
-        // 登录路由
+        // 主路由
         path: '/home',
         component: () => import('@/views/home/Home.vue'),
-        name: 'login',
-        meta: { title: '首页', hidden: false, icon: 'HomeFilled' }
+        name: 'home',
+        meta: { title: '首页', hidden: false, icon: 'home' }
       }
     ]
   },
