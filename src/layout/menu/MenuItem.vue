@@ -10,6 +10,7 @@ const $route = useRoute()
 const isActive = (curPath: string) => {
   return $route.path === curPath ? 'active' : 'normal'
 }
+let a
 
 // 路由跳转
 const goRoute = (toRoutePath: string) => {
