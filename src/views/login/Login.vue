@@ -12,8 +12,8 @@ const $router = useRouter()
 let useStore = useUserStore()
 // 登入数据
 let loginForm = reactive<loginFormData>({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: '111111'
 })
 // 登入表单 ref
 const loginFormRef = ref<FormInstance>()

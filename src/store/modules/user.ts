@@ -2,13 +2,16 @@ import { defineStore } from 'pinia'
 import type { loginFormData } from '@/api/user/type'
 import { reqLogin } from '@/api/user/user'
 import type { UserState } from './types/types'
+// 引入路由数据
+import { constantRoute } from '@/router/routes'
 
-const ADMIN_TOKEN = 'ADMIN_TOKEN'
+const ADMIN_TOKEN: string = 'ADMIN_TOKEN'
 
 const useUserStore = defineStore('User', {
   state: (): UserState => {
     return {
-      token: localStorage.getItem(ADMIN_TOKEN) || ''
+      token: localStorage.getItem(ADMIN_TOKEN) || '',
+      menuRoutes: constantRoute
     }
   },
   actions: {
