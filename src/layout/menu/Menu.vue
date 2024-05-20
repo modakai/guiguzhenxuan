@@ -7,7 +7,12 @@ defineProps(['menuList'])
 
 <template>
   <div class="menu_main">
-    <el-menu class="menus" background-color="#001529" text-color="#fff">
+    <el-menu
+      class="menus"
+      :default-active="$route.path"
+      background-color="#304156"
+      text-color="#fff"
+    >
       <MenuItem :menu-list="menuList" />
     </el-menu>
   </div>

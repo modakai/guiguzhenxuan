@@ -4,6 +4,7 @@ import 'virtual:svg-icons-register'
 // 引入  element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+
 // 设置语言为中文
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 // 引入路由
@@ -19,10 +20,6 @@ import App from './App.vue'
 import globalComponent from '@/components/index'
 
 const app = createApp(App)
-// // 导入icons图标
-// for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-//   app.component(key, component)
-// }
 
 // 使用 element-plus
 app.use(ElementPlus, {

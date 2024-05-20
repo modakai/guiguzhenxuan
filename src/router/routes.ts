@@ -4,7 +4,7 @@ export const constantRoute = [
     path: '/login',
     component: () => import('@/views/login/Login.vue'),
     name: 'login',
-    meta: { title: '登入页' }
+    meta: { title: '登入页', hidden: true }
   },
   {
     // 家路由
@@ -12,20 +12,14 @@ export const constantRoute = [
     component: () => import('@/layout/Layout.vue'),
     name: 'layout',
     meta: { title: '布局页' },
+    redirect: '/home',
     children: [
       {
         // 登录路由
-        path: '/login1',
-        component: () => import('@/views/login/Login.vue'),
+        path: '/home',
+        component: () => import('@/views/home/Home.vue'),
         name: 'login',
-        meta: { title: '登入页', hidden: true }
-      },
-      {
-        // 登录路由
-        path: '/login2',
-        component: () => import('@/views/login/Login.vue'),
-        name: 'login',
-        meta: { title: '测试', hidden: false }
+        meta: { title: '首页', hidden: false, icon: 'HomeFilled' }
       }
     ]
   },
@@ -34,13 +28,13 @@ export const constantRoute = [
     path: '/404',
     component: () => import('@/views/404/404.vue'),
     name: '404',
-    meta: { title: '404页' }
+    meta: { title: '404页', hidden: true }
   },
   {
     // 匹配路由，如果不存在则跳转404
     path: '/:pathMatch(.*)*',
     redirect: '/404',
     name: 'Unknown',
-    meta: { title: '未知页' }
+    meta: { title: '未知页', hidden: true }
   }
 ]
