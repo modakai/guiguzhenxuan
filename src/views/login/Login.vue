@@ -29,7 +29,7 @@ const login = async () => {
   // 进行登入，并且保存数据到pinia中
   try {
     await useStore.userLogin(loginForm)
-    await $router.push('/')
+    await $router.push('/home')
     ElNotification({
       type: 'success',
       message: '登入成功',

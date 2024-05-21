@@ -19,7 +19,9 @@ let userStore = useUserStore()
     <!--  顶部导航  -->
     <header class="layout_tabular">顶部导航</header>
     <!--  内容区域  -->
-    <main class="layout_main">内容区域</main>
+    <main class="layout_main">
+      <router-view />
+    </main>
   </div>
 </template>
 
