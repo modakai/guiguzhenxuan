@@ -12,8 +12,8 @@ const isActive = (curPath: string) => {
 }
 
 // 路由跳转
-const goRoute = (toRoutePath: string) => {
-  $router.push(toRoutePath)
+const goRoute = (vc: any) => {
+  $router.push(vc.index)
 }
 </script>
 
@@ -22,7 +22,7 @@ const goRoute = (toRoutePath: string) => {
     <template v-for="menu in menuList" :key="menu.path">
       <template v-if="!menu.children">
         <!--    一级路由（无子路由）    -->
-        <el-menu-item v-if="!menu.meta.hidden" :index="menu.path" @click="goRoute(menu.path)">
+        <el-menu-item v-if="!menu.meta.hidden" :index="menu.path" @click="goRoute">
           <template #title>
             <svg-icons class="icon" :name="menu.meta.icon" :class="isActive(menu.path)" />
             <span>{{ menu.meta.title }}</span>
@@ -34,7 +34,7 @@ const goRoute = (toRoutePath: string) => {
         <el-menu-item
           v-if="!menu.children[0].meta.hidden"
           :index="menu.children[0].path"
-          @click="goRoute(menu.path)"
+          @click="goRoute"
         >
           <svg-icons
             class="icon"

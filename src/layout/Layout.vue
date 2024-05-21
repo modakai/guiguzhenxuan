@@ -2,6 +2,7 @@
 import Logo from '@/layout/logo/Logo.vue'
 import Menu from '@/layout/menu/Menu.vue'
 import useUserStore from '@/store/modules/user'
+import Main from '@/layout/main/Main.vue'
 let userStore = useUserStore()
 </script>
 
@@ -20,7 +21,7 @@ let userStore = useUserStore()
     <header class="layout_tabular">顶部导航</header>
     <!--  内容区域  -->
     <main class="layout_main">
-      <router-view />
+      <Main />
     </main>
   </div>
 </template>
