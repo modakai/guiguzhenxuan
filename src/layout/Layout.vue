@@ -3,6 +3,7 @@ import Logo from '@/layout/logo/Logo.vue'
 import Menu from '@/layout/menu/Menu.vue'
 import useUserStore from '@/store/modules/user'
 import Main from '@/layout/main/Main.vue'
+import Tabular from '@/layout/tabular/Tabular.vue'
 let userStore = useUserStore()
 </script>
 
@@ -18,7 +19,9 @@ let userStore = useUserStore()
       </el-scrollbar>
     </div>
     <!--  顶部导航  -->
-    <header class="layout_tabular">顶部导航</header>
+    <header class="layout_tabular">
+      <tabular />
+    </header>
     <!--  内容区域  -->
     <main class="layout_main">
       <Main />
@@ -30,7 +33,6 @@ let userStore = useUserStore()
 .layout_container {
   width: 100%;
   height: 100vh;
-  background-color: skyblue;
 
   //  左侧菜单样式
   .layout_slider {
@@ -61,7 +63,7 @@ let userStore = useUserStore()
     left: $base-menu-width;
     width: calc(100% - $base-menu-width);
     height: $base-tabular-height;
-    background-color: aquamarine;
+    color: #000;
   }
 
   // 主内容区域样式

@@ -12,6 +12,7 @@ defineProps(['menuList'])
       :default-active="$route.path"
       background-color="#304156"
       text-color="#fff"
+      active-text-color="#3e957e"
     >
       <MenuItem :menu-list="menuList" />
     </el-menu>
