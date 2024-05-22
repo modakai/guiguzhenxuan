@@ -4,26 +4,42 @@ import Menu from '@/layout/menu/Menu.vue'
 import useUserStore from '@/store/modules/user'
 import Main from '@/layout/main/Main.vue'
 import Tabular from '@/layout/tabular/Tabular.vue'
+import useLayoutStore from '@/store/modules/layout'
+// layout状态库
+const layoutStore = useLayoutStore()
+// 用户状态库
 let userStore = useUserStore()
+
+const isCollapseClass = () => {
+  return { collapse: layoutStore.isCollapse }
+}
 </script>
 
 <template>
   <div class="layout_container">
     <!--  左侧菜单  -->
-    <div class="layout_slider">
+    <div class="layout_slider" :class="isCollapseClass()">
       <!--  logo区域   -->
       <Logo />
       <!--  菜单区域  -->
       <el-scrollbar class="menu_scrollbar">
-        <Menu :menuList="userStore.menuRoutes" />
+        <el-menu
+          :collapse="layoutStore.isCollapse"
+          :default-active="$route.path"
+          background-color="#304156"
+          text-color="white"
+          active-text-color="yellowgreen"
+        >
+          <Menu :menuList="userStore.menuRoutes" />
+        </el-menu>
       </el-scrollbar>
     </div>
     <!--  顶部导航  -->
-    <header class="layout_tabular">
+    <header class="layout_tabular" :class="isCollapseClass()">
       <tabular />
     </header>
     <!--  内容区域  -->
-    <main class="layout_main">
+    <main class="layout_main" :class="isCollapseClass()">
       <Main />
     </main>
   </div>
@@ -36,22 +52,15 @@ let userStore = useUserStore()
 
   //  左侧菜单样式
   .layout_slider {
-    width: $base-menu-width;
     height: 100vh;
     background-color: $base-menu-background;
+    transition: all 0.3s ease-in-out;
 
     .menu_scrollbar {
-      width: 100%;
       height: calc(100vh - $base-menu-logo-height);
-      transition: all 0.3s;
 
       .el-menu {
         border-right: none;
-        background-color: $base-menu-background;
-        .el-menu-item {
-          color: #fff;
-          background-color: #001535; // 一旦设置了 鼠标移上去的过度动画就没了
-        }
       }
     }
   }
@@ -63,7 +72,12 @@ let userStore = useUserStore()
     left: $base-menu-width;
     width: calc(100% - $base-menu-width);
     height: $base-tabular-height;
-    color: #000;
+    transition: all 0.3s ease-in-out;
+
+    &.collapse {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
 
   // 主内容区域样式
@@ -76,6 +90,12 @@ let userStore = useUserStore()
     background-color: rebeccapurple;
     padding: 20px;
     overflow: auto; // 防止内容溢出
+    transition: all 0.3s ease-in-out;
+
+    &.collapse {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
 }
 </style>

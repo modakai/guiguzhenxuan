@@ -22,6 +22,7 @@ import Setting from '@/layout/tabular/setting/Setting.vue'
   width: 100%;
   height: 100%;
   justify-content: space-between;
+  background-color: white;
 
   //  左边部分
   .tabular_left {

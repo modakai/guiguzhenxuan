@@ -1,8 +1,8 @@
 <script setup lang="ts" name="Breadcrumb">
 import { ArrowRight, Expand, Fold } from '@element-plus/icons-vue'
-import useSettingStore from '@/store/modules/setting'
+import useLayoutStore from '@/store/modules/layout'
 // 设置组件的状态仓库
-const settingStore = useSettingStore()
+const settingStore = useLayoutStore()
 // 修改menu菜单的折叠图标
 const changeFoldIcon = () => {
   settingStore.isCollapse = !settingStore.isCollapse

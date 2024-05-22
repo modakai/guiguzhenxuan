@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-const useSettingStore = defineStore('Setting', {
+const useLayoutStore = defineStore('Setting', {
   state: () => {
     return {
       // 是否展开
@@ -9,4 +9,4 @@ const useSettingStore = defineStore('Setting', {
   }
 })
 
-export default useSettingStore
+export default useLayoutStore

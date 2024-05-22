@@ -15,7 +15,7 @@ import setting from '@/setting'
   align-items: center;
   width: 100%;
   height: $base-menu-logo-height;
-  padding: 20px;
+  padding: 10px;
   color: #fff;
   img {
     width: 40px;
