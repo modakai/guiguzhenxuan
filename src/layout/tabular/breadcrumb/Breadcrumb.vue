@@ -1,12 +1,20 @@
 <script setup lang="ts" name="Breadcrumb">
-import { ArrowRight, Fold } from '@element-plus/icons-vue'
+import { ArrowRight, Expand, Fold } from '@element-plus/icons-vue'
+import useSettingStore from '@/store/modules/setting'
+// 设置组件的状态仓库
+const settingStore = useSettingStore()
+// 修改menu菜单的折叠图标
+const changeFoldIcon = () => {
+  settingStore.isCollapse = !settingStore.isCollapse
+}
 </script>
 
 <template>
   <!--  折叠图标  -->
   <div class="fold_icon_box">
-    <el-icon>
-      <Fold />
+    <el-icon @click="changeFoldIcon">
+      <Expand v-if="settingStore.isCollapse" />
+      <Fold v-else />
     </el-icon>
   </div>
   <!--  面包屑导航  -->
