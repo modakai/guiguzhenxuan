@@ -1,6 +1,6 @@
 <script setup lang="ts" name="Setting">
 import { ArrowDown, FullScreen, Refresh, Setting } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import useLayoutStore from '@/store/modules/layout'
 import useUserStore from '@/store/modules/user'
 
@@ -8,6 +8,7 @@ const layoutStore = useLayoutStore()
 const userStore = useUserStore()
 
 const $router = useRouter()
+const $route = useRoute()
 
 // 刷新
 const refresh = () => {
@@ -30,7 +31,7 @@ const fullScreen = () => {
 const logout = () => {
   userStore.logout()
   // 回到登入页
-  $router.replace('/login')
+  $router.replace({ path: '/login', query: { redirect: $route.path } })
 }
 </script>
 

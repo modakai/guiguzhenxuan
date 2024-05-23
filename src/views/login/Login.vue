@@ -3,11 +3,12 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { type loginFormData } from '@/api/user/type'
 import useUserStore from '@/store/modules/user'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification, type FormRules, type FormInstance } from 'element-plus'
 import { getTime } from '@/utils/time'
 // 路由器
 const $router = useRouter()
+const $route = useRoute()
 // 用户pinia仓库
 let useStore = useUserStore()
 // 登入数据
@@ -29,7 +30,9 @@ const login = async () => {
   // 进行登入，并且保存数据到pinia中
   try {
     await useStore.userLogin(loginForm)
-    await $router.push('/home')
+    // 路由跳转
+    let redirect = ($route.query.redirect as string) || ''
+    await $router.push(redirect)
     ElNotification({
       type: 'success',
       message: '登入成功',
