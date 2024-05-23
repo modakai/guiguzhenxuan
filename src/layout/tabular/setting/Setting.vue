@@ -39,7 +39,7 @@ const logout = () => {
   <!--   功能按钮区   -->
   <el-button circle :icon="Refresh" @click="refresh" />
   <el-button circle :icon="FullScreen" @click="fullScreen" />
-  <el-button circle :icon="Setting" @click="logout" />
+  <el-button circle :icon="Setting" />
   <!--   头像区   -->
   <img :src="userStore.avatar" class="avatar" alt="admin" />
   <!-- 下拉菜单 -->
@@ -52,7 +52,7 @@ const logout = () => {
     </span>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item>退出登录</el-dropdown-item>
+        <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>

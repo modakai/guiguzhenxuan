@@ -29,6 +29,7 @@ const useUserStore = defineStore('User', {
         this.token = result.data.token
         // // 那么我本地也要存储一份
         localStorage.setItem(ADMIN_TOKEN, this.token)
+        this.menuRoutes = constantRoute
         // 返回promise
         return 'ok'
       } else {
@@ -40,7 +41,6 @@ const useUserStore = defineStore('User', {
     async getUserInfo() {
       // 发起获取信息
       const result = await reqUserInfo()
-      console.log(result)
       if (result.code === 200) {
         // 保存对应用户信息
         this.username = result.data.checkUser.username
