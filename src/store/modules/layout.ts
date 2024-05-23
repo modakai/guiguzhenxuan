@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 
-const useLayoutStore = defineStore('Setting', {
+const useLayoutStore = defineStore('Layout', {
   state: () => {
     return {
       // 是否展开
-      isCollapse: false
+      isCollapse: false,
+      refresh: false
     }
   }
 })

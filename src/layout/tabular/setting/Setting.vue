@@ -1,10 +1,18 @@
 <script setup lang="ts" name="Setting">
 import { ArrowDown, FullScreen, Refresh, Setting } from '@element-plus/icons-vue'
+import useLayoutStore from '@/store/modules/layout'
+
+const layoutStore = useLayoutStore()
+
+// 刷新
+const refresh = () => {
+  layoutStore.refresh = !layoutStore.refresh
+}
 </script>
 
 <template>
   <!--   功能按钮区   -->
-  <el-button circle :icon="Refresh" />
+  <el-button circle :icon="Refresh" @click="refresh" />
   <el-button circle :icon="FullScreen" />
   <el-button circle :icon="Setting" />
   <!--   头像区   -->
