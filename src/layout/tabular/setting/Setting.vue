@@ -8,12 +8,24 @@ const layoutStore = useLayoutStore()
 const refresh = () => {
   layoutStore.refresh = !layoutStore.refresh
 }
+
+// 全屏
+const fullScreen = () => {
+  let full = document.fullscreenElement
+  if (!full) {
+    // 开启全屏
+    document.documentElement.requestFullscreen()
+  } else {
+    // 关闭全屏
+    document.exitFullscreen()
+  }
+}
 </script>
 
 <template>
   <!--   功能按钮区   -->
   <el-button circle :icon="Refresh" @click="refresh" />
-  <el-button circle :icon="FullScreen" />
+  <el-button circle :icon="FullScreen" @click="fullScreen" />
   <el-button circle :icon="Setting" />
   <!--   头像区   -->
   <img src="/logo.png" class="avatar" alt="admin" />
