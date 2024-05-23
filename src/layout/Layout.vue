@@ -26,7 +26,7 @@ const isCollapseClass = () => {
         <el-menu
           :collapse="layoutStore.isCollapse"
           :default-active="$route.path"
-          background-color="#304156"
+          background-color="#001529"
           text-color="white"
           active-text-color="yellowgreen"
         >

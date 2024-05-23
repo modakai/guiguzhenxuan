@@ -55,10 +55,6 @@ const goRoute = (vc: any) => {
   //路由跳转
   $router.push(vc.index)
 }
-// 激活类 返回字符串的方式是无效的
-const isActive = (curPath: string) => {
-  return { active: $route.path === curPath }
-}
 </script>
 <style scoped lang="scss">
 .icon {
