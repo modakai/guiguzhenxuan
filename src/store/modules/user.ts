@@ -46,6 +46,19 @@ const useUserStore = defineStore('User', {
         this.username = result.data.checkUser.username
         this.avatar = result.data.checkUser.avatar
       }
+    },
+    // 退出登入
+    logout() {
+      // 删除对应的数据
+      this.rest()
+    },
+    rest() {
+      this.token = ''
+      this.menuRoutes = []
+      this.username = ''
+      this.avatar = ''
+      // 删除本地缓存
+      localStorage.removeItem(ADMIN_TOKEN)
     }
   },
   getters: {}

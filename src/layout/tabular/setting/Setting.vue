@@ -1,10 +1,13 @@
 <script setup lang="ts" name="Setting">
 import { ArrowDown, FullScreen, Refresh, Setting } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 import useLayoutStore from '@/store/modules/layout'
 import useUserStore from '@/store/modules/user'
 
 const layoutStore = useLayoutStore()
 const userStore = useUserStore()
+
+const $router = useRouter()
 
 // 刷新
 const refresh = () => {
@@ -22,13 +25,20 @@ const fullScreen = () => {
     document.exitFullscreen()
   }
 }
+
+// 退出登入
+const logout = () => {
+  userStore.logout()
+  // 回到登入页
+  $router.replace('/login')
+}
 </script>
 
 <template>
   <!--   功能按钮区   -->
   <el-button circle :icon="Refresh" @click="refresh" />
   <el-button circle :icon="FullScreen" @click="fullScreen" />
-  <el-button circle :icon="Setting" />
+  <el-button circle :icon="Setting" @click="logout" />
   <!--   头像区   -->
   <img :src="userStore.avatar" class="avatar" alt="admin" />
   <!-- 下拉菜单 -->
@@ -58,6 +68,7 @@ const fullScreen = () => {
   margin: 0 10px;
   border-radius: 50%;
 }
+
 .icon {
   vertical-align: middle;
 }
