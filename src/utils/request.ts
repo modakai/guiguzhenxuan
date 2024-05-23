@@ -2,13 +2,22 @@
 import axios from 'axios'
 // 引入 element的消息提示
 import { ElMessage } from 'element-plus'
+// 引入用户状态仓库
+import useUserStore from '@/store/modules/user'
+
 // 创建axios实例
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000
 })
 // 请求拦截器
-request.interceptors.request.use((config) => config)
+request.interceptors.request.use((config) => {
+  const userStore = useUserStore()
+  if (userStore.token) {
+    config.headers.token = userStore.token
+  }
+  return config
+})
 // 响应拦截器
 request.interceptors.response.use(
   (response) => response.data,

@@ -1,8 +1,10 @@
 <script setup lang="ts" name="Setting">
 import { ArrowDown, FullScreen, Refresh, Setting } from '@element-plus/icons-vue'
 import useLayoutStore from '@/store/modules/layout'
+import useUserStore from '@/store/modules/user'
 
 const layoutStore = useLayoutStore()
+const userStore = useUserStore()
 
 // 刷新
 const refresh = () => {
@@ -28,12 +30,12 @@ const fullScreen = () => {
   <el-button circle :icon="FullScreen" @click="fullScreen" />
   <el-button circle :icon="Setting" />
   <!--   头像区   -->
-  <img src="/logo.png" class="avatar" alt="admin" />
+  <img :src="userStore.avatar" class="avatar" alt="admin" />
   <!-- 下拉菜单 -->
   <el-dropdown>
     <span class="el-dropdown-link">
-      admin
-      <el-icon class="el-icon--right">
+      {{ userStore.username }}
+      <el-icon class="el-icon--right icon">
         <arrow-down />
       </el-icon>
     </span>
@@ -55,5 +57,8 @@ const fullScreen = () => {
   height: 24px;
   margin: 0 10px;
   border-radius: 50%;
+}
+.icon {
+  vertical-align: middle;
 }
 </style>

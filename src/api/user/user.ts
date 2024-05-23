@@ -8,7 +8,8 @@ enum API {
   // LOGIN_URL = '/admin/acl/index/login',
   LOGIN_URL = '/api/user/login',
 
-  USERINFO_URL = '/admin/acl/index/info',
+  // USERINFO_URL = '/admin/acl/index/info',
+  USERINFO_URL = '/api/user/info',
 
   LOGOUT_URL = '/admin/acl/index/logout'
 }
