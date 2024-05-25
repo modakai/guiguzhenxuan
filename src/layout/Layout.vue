@@ -52,11 +52,13 @@ const isCollapseClass = () => {
 
   //  左侧菜单样式
   .layout_slider {
+    width: $base-menu-width;
     height: 100vh;
     background-color: $base-menu-background;
     transition: all 0.3s ease-in-out;
 
     .menu_scrollbar {
+      width: 100%;
       height: calc(100vh - $base-menu-logo-height);
 
       .el-menu {
