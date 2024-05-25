@@ -4,6 +4,8 @@ import 'virtual:svg-icons-register'
 // 引入  element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+// 引入路由鉴权
+import './permission'
 
 // 设置语言为中文
 import zhCn from 'element-plus/es/locale/lang/zh-cn'

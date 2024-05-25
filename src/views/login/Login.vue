@@ -31,7 +31,7 @@ const login = async () => {
   try {
     await useStore.userLogin(loginForm)
     // 路由跳转
-    let redirect = ($route.query.redirect as string) || ''
+    let redirect = ($route.query.redirect as string) || '/home'
     await $router.push(redirect)
     ElNotification({
       type: 'success',
