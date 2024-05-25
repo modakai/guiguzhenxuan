@@ -2,21 +2,37 @@
 import router from './router'
 // 引入进度条
 import nprogress from '@/api/nprogress/nprogress'
+import pinia from '@/store'
+import useUserStore from './store/modules/user'
 
-const ADMIN_TOKEN: string = 'ADMIN_TOKEN'
+const userStore = useUserStore(pinia)
+
 // 全局路由前置路由守卫
-// to 是去哪个路由
-// from 是从哪个路由来
-// next 放行路由
-router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem(ADMIN_TOKEN)
+router.beforeEach(async (to, from, next) => {
+  const token = userStore.token
   nprogress.start()
   if (token) {
     // 登入成功说明local里面存在token
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      next()
+      // 判断用户名
+      if (userStore.username) {
+        next()
+      } else {
+        try {
+          // 如果没有，则发起请求获取用户信息
+          await userStore.getUserInfo()
+          // 放行
+          next()
+        } catch (e) {
+          //token过期:获取不到用户信息了
+          //用户手动修改本地存储token
+          //退出登录->用户相关的数据清空
+          userStore.logout()
+          next({ path: '/login', query: { redirect: to.path } })
+        }
+      }
     }
   } else {
     console.log('to', to.path)

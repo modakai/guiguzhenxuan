@@ -6,14 +6,16 @@ import type { UserState } from './types/types'
 import { constantRoute } from '@/router/routes'
 
 const ADMIN_TOKEN: string = 'ADMIN_TOKEN'
+const ADMIN_USERNAME: string = 'USERNAME'
+const ADMIN_AVATAR: string = 'AVATAR'
 
 const useUserStore = defineStore('User', {
   state: (): UserState => {
     return {
       token: localStorage.getItem(ADMIN_TOKEN) || '',
       menuRoutes: constantRoute,
-      username: '',
-      avatar: ''
+      username: localStorage.getItem(ADMIN_USERNAME) || '',
+      avatar: localStorage.getItem(ADMIN_USERNAME) || ''
     }
   },
   actions: {
@@ -45,6 +47,8 @@ const useUserStore = defineStore('User', {
         // 保存对应用户信息
         this.username = result.data.checkUser.username
         this.avatar = result.data.checkUser.avatar
+        localStorage.setItem(ADMIN_USERNAME, this.username)
+        localStorage.setItem(ADMIN_AVATAR, this.avatar)
       }
     },
     // 退出登入
@@ -59,6 +63,8 @@ const useUserStore = defineStore('User', {
       this.avatar = ''
       // 删除本地缓存
       localStorage.removeItem(ADMIN_TOKEN)
+      localStorage.removeItem(ADMIN_USERNAME)
+      localStorage.removeItem(ADMIN_AVATAR)
     }
   },
   getters: {}
