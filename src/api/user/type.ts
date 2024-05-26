@@ -14,7 +14,7 @@ export interface ResponseData {
 
 //定义登录接口返回数据类型
 export interface loginResponseData extends ResponseData {
-  data: Record<string, any>
+  data: string
 }
 
 //定义获取用户信息返回数据类型
@@ -27,12 +27,10 @@ export interface loginResponseData extends ResponseData {
 //   }
 export interface userInfoResponseData extends ResponseData {
   data: {
-    checkUser: {
-      routes: string[]
-      buttons: string[]
-      roles: string[]
-      username: string
-      avatar: string
-    }
+    routes: string[]
+    buttons: string[]
+    roles: string[]
+    name: string
+    avatar: string
   }
 }

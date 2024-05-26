@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { loginFormData } from '@/api/user/type'
-import { reqLogin, reqUserInfo } from '@/api/user/user'
+import { reqLogin, reqLogout, reqUserInfo } from '@/api/user/user'
 import type { UserState } from './types/types'
 // 引入路由数据
 import { constantRoute } from '@/router/routes'
@@ -25,10 +25,9 @@ const useUserStore = defineStore('User', {
       // 登入请求：成功code200 -》 token
       // 登入请求：失败code201 -》登入失败提示错误信息
       const result = await reqLogin(form)
-      console.log(result.code)
       if (result.code === 200) {
         // // 保存对应得token
-        this.token = result.data.token
+        this.token = result.data
         // // 那么我本地也要存储一份
         localStorage.setItem(ADMIN_TOKEN, this.token)
         this.menuRoutes = constantRoute
@@ -36,7 +35,7 @@ const useUserStore = defineStore('User', {
         return 'ok'
       } else {
         // 登入失败提示错误信息
-        return Promise.reject(new Error(result.data.message))
+        return Promise.reject(new Error(result.message))
       }
     },
     // 获取用户信息
@@ -45,16 +44,29 @@ const useUserStore = defineStore('User', {
       const result = await reqUserInfo()
       if (result.code === 200) {
         // 保存对应用户信息
-        this.username = result.data.checkUser.username
-        this.avatar = result.data.checkUser.avatar
+        this.username = result.data.name
+        this.avatar = result.data.avatar
         localStorage.setItem(ADMIN_USERNAME, this.username)
         localStorage.setItem(ADMIN_AVATAR, this.avatar)
+        return result
+      } else {
+        return Promise.reject(new Error(result.message))
       }
     },
     // 退出登入
-    logout() {
+    async logout() {
       // 删除对应的数据
-      this.rest()
+      const result: any = await reqLogout()
+      if (result.code == 200) {
+        this.rest()
+        //目前没有mock接口:退出登录接口(通知服务器本地用户唯一标识失效)
+        this.token = ''
+        this.username = ''
+        this.avatar = ''
+        return 'ok'
+      } else {
+        return Promise.reject(new Error(result.message))
+      }
     },
     rest() {
       this.token = ''

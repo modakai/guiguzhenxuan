@@ -28,10 +28,10 @@ const fullScreen = () => {
 }
 
 // 退出登入
-const logout = () => {
-  userStore.logout()
+const logout = async () => {
+  await userStore.logout()
   // 回到登入页
-  $router.replace({ path: '/login', query: { redirect: $route.path } })
+  await $router.replace({ path: '/login', query: { redirect: $route.path } })
 }
 </script>
 
