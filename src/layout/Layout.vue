@@ -89,7 +89,6 @@ const isCollapseClass = () => {
     left: $base-menu-width;
     width: calc(100% - $base-menu-width);
     height: calc(100% - $base-tabular-height);
-    background-color: rebeccapurple;
     padding: 20px;
     overflow: auto; // 防止内容溢出
     transition: all 0.3s ease-in-out;
